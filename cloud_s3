@@ -1,0 +1,20 @@
+apt-get install g++ build-essential libfuse-dev fuse-utils libcurl4-openssl-dev libxml2-dev mime-support
+
+
+#ruchamiamy s3fs za pomocą polecenia s3fs z parametrami,
+#pierwszy użyty w przykładzie bucket to nazwa kontenera
+#w usłudze plików w chmurze, drugi,
+#tutaj directory to katalog lokalnym w którym będzie widoczny zdalny zasób,
+#dodatkowa opcja -o url="https://e24files.com" konieczna jest żeby wskazać tzw.
+#endpoint, dodatkowo zezwalamy innym użytkownikom lokalnym na
+#dostęp do tych danych.
+#mkdir directory
+
+s3fs bucket directory -o url="https://e24files.com" -o allow_other
+
+#Aby montować zasób e24files automatycznie przy każdym
+#starcie systemu, musimy wprowadzić odpowiedni wpis na końcu pliku
+#/etc/fstab (modyfikacja wymaga uprawnień konta administratora root)
+
+
+#s3fs#bucket /sciezka/do_katalogu fuse allow_other,url=https://e24files.com 0 0
